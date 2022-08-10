@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-secondary">
       <div className="container">
-        <a className="navbar-brand text-light" href="/">
+        <Link className="navbar-brand text-light" to="/">
           Home
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,32 +22,28 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav justify-content-end flex-grow-1 pe-2">
             <li className="nav-item">
-              <a
+              <Link
                 className="nav-link text-light"
                 aria-current="page"
-                href="/books"
+                to="/books"
               >
                 Daftar Buku
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-light" href="/about">
+              <Link className="nav-link text-light" to="/about">
                 About
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-light" href="/users">
+              <Link className="nav-link text-light" to="/users">
                 Users
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
-                className="nav-link text-light"
-                href="/logout"
-                onclick="return confirm(`yakin akan logout ?`);"
-              >
+              {/* <Link className="nav-link text-light" to="/logout" disabled>
                 Logout
-              </a>
+              </Link> */}
             </li>
           </ul>
         </div>
