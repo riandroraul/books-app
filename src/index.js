@@ -19,7 +19,7 @@ root.render(
       <Route path="/users" element={<Users />}></Route>
       <Route path="/tambah" element={<TambahBuku />}></Route>
       <Route path="/ubah" element={<UbahBuku />}></Route>
-      <Route path="/books/hapus/:id"></Route>
+      {/* <Route path="/books/hapus/:id" element={<Books />}></Route> */}
     </Routes>
   </BrowserRouter>
 );

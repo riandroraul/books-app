@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./navbar";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
-  const navigate = useNavigate();
   const getBooks = () => {
     fetch("http://localhost:5000/books")
       .then((res) => res.json())
@@ -15,12 +14,28 @@ const Books = () => {
       });
   };
 
-  const deleteBook = async (id) => {
-    await fetch(`http://localhost:5000/books/hapus/${id}`, {
-      method: "DELETE",
+  const deleteBook = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+      onClick: (event) => event.preventDefault(),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/books/hapus/${id}`, {
+          method: "DELETE",
+        }).then(async (res) => {
+          const books = await res.json();
+          console.log(books);
+          Swal.fire("Deleted!", "Book has been deleted.", "success");
+          getBooks();
+        });
+      }
     });
-    getBooks();
-    navigate("/books");
   };
 
   useEffect(() => {
@@ -60,15 +75,17 @@ const Books = () => {
                     <Link to="/ubah">
                       <span className="badge text-bg-success">ubah</span>
                     </Link>
-                    <Link to={`/books/hapus/${book._id}`}>
-                      <button
-                        type="submit"
-                        className="badge text-bg-danger"
-                        onClick={() => deleteBook(book.id)}
-                      >
-                        hapus
-                      </button>
-                    </Link>
+                    {/* <form onSubmit={(event) => event.preventDefault()}> */}
+                    <button
+                      type="submit"
+                      className="badge text-bg-danger tombol-hapus"
+                      onClick={() => {
+                        deleteBook(book._id);
+                      }}
+                    >
+                      hapus
+                    </button>
+                    {/* </form> */}
                   </td>
                 </tr>
               );
