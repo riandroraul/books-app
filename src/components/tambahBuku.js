@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./navbar";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const TambahBuku = () => {
   const [namaBuku, setNamaBuku] = useState("");
@@ -11,9 +12,9 @@ const TambahBuku = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
-      namaBuku: namaBuku,
-      penerbit: penerbit,
-      pengarang: pengarang,
+      namaBuku,
+      penerbit,
+      pengarang,
     };
 
     const requestOptions = {
@@ -26,9 +27,23 @@ const TambahBuku = () => {
       requestOptions
     );
     const books = await response.json();
-    return navigate("/books", {
-      books,
-    });
+    console.log(response.status);
+    console.log(books);
+    if (response.status === 201) {
+      navigate("/books");
+      Swal.fire({
+        icon: "success",
+        type: "success",
+        title: books.message,
+      });
+    } else {
+      navigate("/tambah");
+      Swal.fire({
+        icon: "warning",
+        type: "success",
+        title: books.message,
+      });
+    }
   };
 
   const title = "Halaman Tambah Buku";

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./navbar";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
-
+  const navigate = useNavigate();
   const getBooks = () => {
     fetch("http://localhost:5000/books")
       .then((res) => res.json())
@@ -12,6 +13,14 @@ const Books = () => {
         // console.log("sudah di render");
         setBooks(res);
       });
+  };
+
+  const deleteBook = async (id) => {
+    await fetch(`http://localhost:5000/books/hapus/${id}`, {
+      method: "DELETE",
+    });
+    getBooks();
+    navigate("/books");
   };
 
   useEffect(() => {
@@ -42,7 +51,7 @@ const Books = () => {
           <tbody>
             {books.map((book, index) => {
               return (
-                <tr>
+                <tr key={book._id}>
                   <th scope="row">{index + 1}</th>
                   <td>{book.namaBuku}</td>
                   <td>{book.penerbit}</td>
@@ -51,16 +60,15 @@ const Books = () => {
                     <Link to="/ubah">
                       <span className="badge text-bg-success">ubah</span>
                     </Link>
-
-                    <form
-                      action="/hapus?_method=DELETE"
-                      method="post"
-                      className="d-inline"
-                    >
-                      <button type="submit" className="badge text-bg-danger">
+                    <Link to={`/books/hapus/${book._id}`}>
+                      <button
+                        type="submit"
+                        className="badge text-bg-danger"
+                        onClick={() => deleteBook(book.id)}
+                      >
                         hapus
                       </button>
-                    </form>
+                    </Link>
                   </td>
                 </tr>
               );
