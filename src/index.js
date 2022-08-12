@@ -8,6 +8,8 @@ import Books from "./components/books";
 import Users from "./components/users";
 import TambahBuku from "./components/tambahBuku";
 import UbahBuku from "./components/ubahBuku";
+import Login from "./components/login";
+import Register from "./components/register";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,7 +21,8 @@ root.render(
       <Route path="/users" element={<Users />}></Route>
       <Route path="/tambah" element={<TambahBuku />}></Route>
       <Route path="/ubah" element={<UbahBuku />}></Route>
-      {/* <Route path="/books/hapus/:id" element={<Books />}></Route> */}
+      <Route path="/login" element={<Login />}></Route>
+      <Route path="/register" element={<Register />}></Route>
     </Routes>
   </BrowserRouter>
 );
