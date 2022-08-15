@@ -20,7 +20,7 @@ root.render(
       <Route path="/books" element={<Books />}></Route>
       <Route path="/users" element={<Users />}></Route>
       <Route path="/tambah" element={<TambahBuku />}></Route>
-      <Route path="/ubah" element={<UbahBuku />}></Route>
+      <Route path="/ubah/:id" element={<UbahBuku />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
     </Routes>

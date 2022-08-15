@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Navbar from "./navbar";
 import { useNavigate, useParams } from "react-router-dom";
@@ -31,7 +31,7 @@ const UbahBuku = () => {
     const books = await response.json();
     console.log(response.status);
     console.log(books);
-    if (response.status === 201) {
+    if (response.status === 200) {
       navigate("/books");
       Swal.fire({
         icon: "success",
@@ -39,7 +39,7 @@ const UbahBuku = () => {
         title: books.message,
       });
     } else {
-      navigate("/tambah");
+      navigate("/ubah/:id");
       Swal.fire({
         icon: "warning",
         type: "success",
@@ -48,13 +48,25 @@ const UbahBuku = () => {
     }
   };
 
+  const getBookById = async () => {
+    const response = await fetch(`http://localhost:5000/books/id/${id}`);
+    const { book } = await response.json();
+    setNamaBuku(book.namaBuku);
+    setPenerbit(book.penerbit);
+    setPengarang(book.pengarang);
+  };
+
+  useEffect(() => {
+    getBookById();
+  }, []);
+
   const title = "Ubah Data Buku";
   return (
     <div>
       <Navbar />
       <div className="container">
         <h1>{title}</h1>
-        <form method="post" action="">
+        <form onSubmit={handleEdit}>
           <div className="mb-3 col-md-6">
             <label htmlFor="namaBuku" className="form-label">
               Nama Buku
