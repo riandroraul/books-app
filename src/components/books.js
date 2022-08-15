@@ -72,7 +72,7 @@ const Books = () => {
                   <td>{book.penerbit}</td>
                   <td>{book.pengarang}</td>
                   <td>
-                    <Link to="/ubah">
+                    <Link to={`/ubah/${book._id}`}>
                       <span className="badge text-bg-success">ubah</span>
                     </Link>
                     {/* <form onSubmit={(event) => event.preventDefault()}> */}

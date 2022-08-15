@@ -53,6 +53,7 @@ const Login = () => {
             type="email"
             className="form-control"
             id="email"
+            placeholder="input email ..."
             name="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -65,6 +66,7 @@ const Login = () => {
           <input
             type="password"
             className="form-control col-md-6"
+            placeholder="input password ..."
             name="password"
             id="password"
             value={password}
