@@ -1,0 +1,116 @@
+import React, { useEffect, useState } from "react";
+import Navbar from "./navbar";
+import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+
+const UbahRoleUser = () => {
+  const [namaUser, setNamaUser] = useState("");
+  const [emailUser, setEmailUser] = useState("");
+  const [roleUser, setRoleUser] = useState("");
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const handleEdit = async (event) => {
+    event.preventDefault();
+    const data = { role: roleUser };
+
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    };
+
+    const response = await fetch(
+      `http://localhost:5000/ubahRoleUser/${id}`,
+      requestOptions
+    );
+    // console.log(response);
+    const success = await response.json();
+    // console.log(typeof success.modifiedCount);
+    if (success.modifiedCount === 1) {
+      navigate("/users");
+      Swal.fire({
+        icon: "success",
+        type: "success",
+        title: "Role User Berhasil Diubah",
+      });
+    } else {
+      Swal.fire({
+        icon: "warning",
+        type: "warning",
+        title: "Role User Gagal Diubah",
+      });
+    }
+  };
+
+  const getUserById = async () => {
+    const response = await fetch(`http://localhost:5000/users/${id}`);
+    const { user } = await response.json();
+    setNamaUser(user.nama);
+    setEmailUser(user.email);
+    setRoleUser(user.role);
+  };
+
+  useEffect(() => {
+    getUserById();
+  }, []);
+
+  const title = "Ubah Role User";
+  return (
+    <div>
+      <Navbar />
+      <div className="container">
+        <h1>{title}</h1>
+        <form onSubmit={handleEdit}>
+          <div className="mb-3 col-md-6">
+            <label htmlFor="nama" className="form-label">
+              Nama
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={namaUser}
+              name="nama"
+              id="nama"
+              disabled
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              value={emailUser}
+              name="email"
+              id="email"
+              disabled
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <select
+              className="form-select"
+              name="role"
+              onChange={(event) => setRoleUser(event.target.value)}
+            >
+              <option selected defaultValue={roleUser}>
+                {roleUser}
+              </option>
+              <option defaultValue={"1"}>1</option>
+              <option defaultValue={"2"}>2</option>
+              <option defaultValue={"3"}>3</option>
+            </select>
+          </div>
+          <div className="mb-3 col-md-6">
+            <button type="submit" className="btn btn-primary">
+              Ubah
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default UbahRoleUser;
