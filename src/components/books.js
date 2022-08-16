@@ -75,7 +75,6 @@ const Books = () => {
                     <Link to={`/ubah/${book._id}`}>
                       <span className="badge text-bg-success">ubah</span>
                     </Link>
-                    {/* <form onSubmit={(event) => event.preventDefault()}> */}
                     <button
                       type="submit"
                       className="badge text-bg-danger tombol-hapus"
@@ -85,7 +84,6 @@ const Books = () => {
                     >
                       hapus
                     </button>
-                    {/* </form> */}
                   </td>
                 </tr>
               );

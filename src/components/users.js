@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./navbar";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  // const { id } = useParams();
 
   const getUsers = () => {
     fetch("http://localhost:5000/users")
@@ -10,6 +13,38 @@ const Users = () => {
       .then((res) => {
         setUsers(res);
       });
+  };
+
+  const deleteUser = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+      onClick: (event) => event.preventDefault(),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/hapusUser/${id}`, {
+          method: "DELETE",
+        }).then(async (res) => {
+          const {
+            result: { deletedCount },
+            message,
+          } = await res.json();
+          console.log(deletedCount);
+          if (deletedCount === 1) {
+            Swal.fire("Deleted!", message, "success");
+            getUsers();
+          } else {
+            Swal.fire("Deleted Failed!", message, "error");
+            getUsers();
+          }
+        });
+      }
+    });
   };
 
   useEffect(() => {
@@ -35,7 +70,7 @@ const Users = () => {
             <tbody>
               {users.map((user, index) => {
                 return (
-                  <tr>
+                  <tr key={user._id}>
                     <th scope="row" key={index}>
                       {index + 1}
                     </th>
@@ -43,19 +78,18 @@ const Users = () => {
                     <td>{user.email}</td>
                     <td>{user.role}</td>
                     <td>
-                      <a href="/ubahUser">
+                      <Link to={`/ubahRoleUser/${user._id}`}>
                         <span className="badge text-bg-success">ubah</span>
-                      </a>
-
-                      <form
-                        action="/hapusUser?_method=DELETE"
-                        method="post"
-                        className="d-inline"
+                      </Link>
+                      <button
+                        type="submit"
+                        className="badge text-bg-danger"
+                        onClick={() => {
+                          deleteUser(user._id);
+                        }}
                       >
-                        <button type="submit" className="badge text-bg-danger">
-                          hapus
-                        </button>
-                      </form>
+                        hapus
+                      </button>
                     </td>
                   </tr>
                 );

@@ -10,6 +10,7 @@ import TambahBuku from "./components/tambahBuku";
 import UbahBuku from "./components/ubahBuku";
 import Login from "./components/login";
 import Register from "./components/register";
+import UbahRoleUser from "./components/UbahRoleUser";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,6 +24,7 @@ root.render(
       <Route path="/ubah/:id" element={<UbahBuku />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
+      <Route path="/ubahRoleUser/:id" element={<UbahRoleUser />}></Route>
     </Routes>
   </BrowserRouter>
 );

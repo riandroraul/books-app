@@ -25,8 +25,8 @@ const Register = () => {
       requestOptions
     );
     const users = await response.json();
-    console.log(response.status);
-    console.log(users);
+    // console.log(response.status);
+    // console.log(users);
     if (response.status === 201) {
       navigate("/login");
       Swal.fire({
@@ -46,16 +46,16 @@ const Register = () => {
 
   const title = "Halaman Register";
   return (
-    <div class="container">
+    <div className="container">
       <h1>{title}</h1>
       <form onSubmit={register}>
-        <div class="mb-3 col-lg-6">
-          <label for="nama" class="form-label">
+        <div className="mb-3 col-lg-6">
+          <label htmlFor="nama" className="form-label">
             Nama
           </label>
           <input
             type="text"
-            class="form-control col-md-6"
+            className="form-control col-md-6"
             id="nama"
             name="nama"
             required
@@ -63,27 +63,27 @@ const Register = () => {
             onChange={(event) => setName(event.target.value)}
           />
         </div>
-        <div class="mb-3 col-lg-6">
-          <label for="email" class="form-label">
+        <div className="mb-3 col-lg-6">
+          <label htmlFor="email" className="form-label">
             Email address
           </label>
           <input
             type="email"
             name="email"
             id="email"
-            class="form-control col-md-6"
+            className="form-control col-md-6"
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
         </div>
-        <div class="mb-3 col-lg-6">
-          <label for="password" class="form-label">
+        <div className="mb-3 col-lg-6">
+          <label htmlFor="password" className="form-label">
             Password
           </label>
           <input
             type="password"
-            class="form-control col-md-6"
+            className="form-control col-md-6"
             name="password"
             id="password"
             required
@@ -91,12 +91,12 @@ const Register = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <div class="my-3 col-lg-6">
+        <div className="my-3 col-lg-6">
           <span>
             sudah punya akun ? silahkan <a href="/login">Login</a>
           </span>
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </form>

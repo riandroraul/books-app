@@ -21,22 +21,20 @@ const Login = () => {
       body: JSON.stringify(userLogin),
     };
     const response = await fetch("http://localhost:5000/login", requestOptions);
-    const users = await response.json();
-    const decode = jwtDecode(users.token);
-    console.log(decode);
+    const user = await response.json();
     if (response.status === 200) {
+      const decode = jwtDecode(user.token);
+      console.log(decode);
       navigate("/books");
       Swal.fire({
         icon: "success",
-        type: "success",
-        title: users.message,
+        title: user.message,
       });
     } else {
       navigate("/login");
       Swal.fire({
-        icon: "warning",
-        type: "warning",
-        title: users.message,
+        icon: "error",
+        title: user.message,
       });
     }
   };
