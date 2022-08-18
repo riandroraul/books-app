@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavUser from "./NavUser";
 
 const Navbar = () => {
+  // const [dataUser, setDataUser] = useState("");
+  // useEffect(() => {
+  const user = JSON.parse(localStorage.getItem("userLogin"));
+  // if (user !== null) {
+  //   setDataUser(user);
+  // }
+  // }, []);
+  console.log(user.role);
   return (
     <nav className="navbar navbar-expand-lg bg-secondary">
       <div className="container">
@@ -35,15 +44,11 @@ const Navbar = () => {
                 About
               </Link>
             </li>
+            <NavUser nama={"Users"} path={"/users"} />
             <li className="nav-item">
-              <Link className="nav-link text-light" to="/users">
-                Users
-              </Link>
-            </li>
-            <li className="nav-item">
-              {/* <Link className="nav-link text-light" to="/logout" disabled>
+              <Link className="nav-link text-light" to="/logout" disabled>
                 Logout
-              </Link> */}
+              </Link>
             </li>
           </ul>
         </div>

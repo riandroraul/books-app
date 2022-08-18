@@ -13,6 +13,7 @@ import Register from "./components/register";
 import UbahRoleUser from "./components/UbahRoleUser";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+// const user = JSON.parse(localStorage.getItem("userLogin"));
 root.render(
   <BrowserRouter>
     <Routes>

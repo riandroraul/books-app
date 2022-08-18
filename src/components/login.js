@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
@@ -7,10 +7,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [userLogin, setUserLogin] = useState([]);
 
   const onLogin = async (event) => {
     event.preventDefault();
-    const userLogin = {
+    const cekUser = {
       email,
       password,
     };
@@ -18,12 +19,18 @@ const Login = () => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userLogin),
+      body: JSON.stringify(cekUser),
     };
+
     const response = await fetch("http://localhost:5000/login", requestOptions);
     const user = await response.json();
     if (response.status === 200) {
       const decode = jwtDecode(user.token);
+      // const iat = new Date(decode.iat * 1000);
+      // const exp = new Date(decode.exp * 1000);
+      // console.log(iat);
+      // console.log(exp);
+      localStorage.setItem("userLogin", JSON.stringify(decode));
       console.log(decode);
       navigate("/books");
       Swal.fire({
@@ -38,6 +45,14 @@ const Login = () => {
       });
     }
   };
+
+  useEffect(() => {
+    const dataUser = JSON.parse(localStorage.getItem(userLogin));
+    if (dataUser) {
+      setUserLogin(dataUser);
+    }
+  });
+
   const title = "Halaman Login";
   return (
     <div className="container">
