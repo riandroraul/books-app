@@ -5,13 +5,15 @@ import Swal from "sweetalert2";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
-  const getBooks = () => {
-    fetch("http://localhost:5000/books")
-      .then((res) => res.json())
-      .then((res) => {
-        // console.log("sudah di render");
-        setBooks(res);
-      });
+  const getBooks = async () => {
+    const response = await fetch("http://localhost:5000/books", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+      },
+    });
+    const { books } = await response.json();
+    setBooks(books);
   };
 
   const deleteBook = (id) => {

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const NavUser = (props) => {
-  const user = JSON.parse(localStorage.getItem("userLogin"));
+  // const user = JSON.parse(localStorage.getItem("userLogin"));
   // if (user.role === "1") {
   return (
     <li className="nav-item">

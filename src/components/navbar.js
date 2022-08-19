@@ -1,16 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavUser from "./NavUser";
 
 const Navbar = () => {
-  // const [dataUser, setDataUser] = useState("");
-  // useEffect(() => {
-  const user = JSON.parse(localStorage.getItem("userLogin"));
-  // if (user !== null) {
-  //   setDataUser(user);
-  // }
-  // }, []);
-  console.log(user.role);
+  const navigate = useNavigate();
+  const onLogout = () => {
+    localStorage.clear("userLogin");
+    navigate("/login");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-secondary">
       <div className="container">
@@ -46,7 +44,14 @@ const Navbar = () => {
             </li>
             <NavUser nama={"Users"} path={"/users"} />
             <li className="nav-item">
-              <Link className="nav-link text-light" to="/logout" disabled>
+              <Link
+                to={"/login"}
+                className="nav-link text-light"
+                onClick={(event) => {
+                  event.preventDefault();
+                  onLogout();
+                }}
+              >
                 Logout
               </Link>
             </li>
