@@ -21,7 +21,10 @@ const UbahBuku = () => {
 
     const requestOptions = {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+      },
       body: JSON.stringify(data),
     };
     const response = await fetch(
@@ -49,7 +52,13 @@ const UbahBuku = () => {
   };
 
   const getBookById = async () => {
-    const response = await fetch(`http://localhost:5000/books/id/${id}`);
+    const response = await fetch(`http://localhost:5000/books/id/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+      },
+    });
     const { book } = await response.json();
     setNamaBuku(book.namaBuku);
     setPenerbit(book.penerbit);
@@ -58,7 +67,7 @@ const UbahBuku = () => {
 
   useEffect(() => {
     getBookById();
-  }, []);
+  });
 
   const title = "Ubah Data Buku";
   return (

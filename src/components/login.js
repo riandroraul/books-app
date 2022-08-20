@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import jwtDecode from "jwt-decode";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [userLogin, setUserLogin] = useState([]);
 
   const onLogin = async (event) => {
     event.preventDefault();
@@ -49,13 +47,6 @@ const Login = () => {
       });
     }
   };
-
-  useEffect(() => {
-    const dataUser = JSON.parse(localStorage.getItem(userLogin));
-    if (dataUser) {
-      setUserLogin(dataUser);
-    }
-  });
 
   const title = "Halaman Login";
   return (

@@ -30,6 +30,10 @@ const Books = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/books/hapus/${id}`, {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+          },
         }).then(async (res) => {
           const books = await res.json();
           console.log(books);
