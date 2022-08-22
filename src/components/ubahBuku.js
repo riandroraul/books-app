@@ -23,7 +23,7 @@ const UbahBuku = () => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(data),
     };
@@ -55,7 +55,7 @@ const UbahBuku = () => {
     const response = await fetch(`http://localhost:5000/books/id/${id}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
     const { book } = await response.json();

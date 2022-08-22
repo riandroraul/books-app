@@ -6,6 +6,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const onLogout = () => {
     localStorage.clear("userLogin");
+    localStorage.clear("token");
     navigate("/login");
   };
 

@@ -11,7 +11,7 @@ const Users = () => {
     fetch("http://localhost:5000/users", {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => res.json())
@@ -36,7 +36,7 @@ const Users = () => {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }).then(async (res) => {
           const {

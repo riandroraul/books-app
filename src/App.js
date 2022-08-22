@@ -9,14 +9,12 @@ import Register from "./components/register";
 import UbahRoleUser from "./components/UbahRoleUser";
 import Home from "./components/Home";
 import About from "./components/about";
-import jwtDecode from "jwt-decode";
-import UserContext from "./UserContext";
+import UserContext from "./components/UserContext";
 
 function App() {
-  const token = localStorage.getItem("userLogin");
-  const decode = jwtDecode(token);
+  const userLogin = localStorage.getItem("userLogin");
   // console.log(decode);
-  const [user] = useState(decode);
+  const [user] = useState(userLogin);
   // console.log(user);
   return (
     <BrowserRouter>

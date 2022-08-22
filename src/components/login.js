@@ -23,27 +23,26 @@ const Login = () => {
     const response = await fetch("http://localhost:5000/login", requestOptions);
     const { cekUser: user, message, token } = await response.json();
     console.log(user);
-    if (response.status === 200) {
-      // const decode = jwtDecode(user.token);
-      // const iat = new Date(decode.iat * 1000);
-      // const exp = new Date(decode.exp * 1000);
-      // console.log(iat);
-      // console.log(exp);
-      localStorage.setItem("userLogin", token);
-      // console.log(decode);
-      navigate("/books");
-      Swal.fire({
-        icon: "success",
-        title: message,
-      });
-    } else {
+    if (response.status !== 200) {
       navigate("/login");
       Swal.fire({
         icon: "error",
         text: "Ensure your email and password matching!",
         title: message,
-        showConfirmButton: false,
-        timer: 5000,
+      });
+    } else {
+      // const decode = jwtDecode(user.token);
+      // const iat = new Date(decode.iat * 1000);
+      // const exp = new Date(decode.exp * 1000);
+      // console.log(iat);
+      // console.log(exp);
+      localStorage.setItem("token", token);
+      localStorage.setItem("userLogin", JSON.stringify(user));
+      // console.log(decode);
+      navigate("/books");
+      Swal.fire({
+        icon: "success",
+        title: message,
       });
     }
   };

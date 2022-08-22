@@ -9,9 +9,10 @@ const Books = () => {
     const response = await fetch("http://localhost:5000/books", {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
+    // console.log(JSON.parse(localStorage.getItem("userLogin")));
     const { books } = await response.json();
     setBooks(books);
   };
@@ -32,7 +33,7 @@ const Books = () => {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }).then(async (res) => {
           const books = await res.json();
