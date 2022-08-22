@@ -53,7 +53,6 @@ const UbahBuku = () => {
 
   const getBookById = async () => {
     const response = await fetch(`http://localhost:5000/books/id/${id}`, {
-      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
@@ -67,7 +66,7 @@ const UbahBuku = () => {
 
   useEffect(() => {
     getBookById();
-  });
+  }, []);
 
   const title = "Ubah Data Buku";
   return (

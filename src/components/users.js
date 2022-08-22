@@ -8,7 +8,12 @@ const Users = () => {
   // const { id } = useParams();
 
   const getUsers = () => {
-    fetch("http://localhost:5000/users")
+    fetch("http://localhost:5000/users", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+      },
+    })
       .then((res) => res.json())
       .then((res) => {
         setUsers(res);
@@ -29,6 +34,10 @@ const Users = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/hapusUser/${id}`, {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+          },
         }).then(async (res) => {
           const {
             result: { deletedCount },

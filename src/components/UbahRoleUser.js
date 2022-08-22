@@ -16,7 +16,10 @@ const UbahRoleUser = () => {
 
     const requestOptions = {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+      },
       body: JSON.stringify(data),
     };
 
@@ -44,7 +47,12 @@ const UbahRoleUser = () => {
   };
 
   const getUserById = async () => {
-    const response = await fetch(`http://localhost:5000/users/${id}`);
+    const response = await fetch(`http://localhost:5000/users/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+      },
+    });
     const { user } = await response.json();
     setNamaUser(user.nama);
     setEmailUser(user.email);
