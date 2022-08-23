@@ -13,6 +13,11 @@ const UbahBuku = () => {
 
   const handleEdit = async (event) => {
     event.preventDefault();
+    const userLogin = localStorage.getItem("userLogin");
+    console.log(userLogin);
+    if (!userLogin) {
+      return navigate("/login");
+    }
     const data = {
       namaBuku,
       penerbit,

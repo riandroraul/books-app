@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Navbar from "./navbar";
 
 function Home() {
@@ -16,6 +17,7 @@ function Home() {
           veritatis consequuntur ipsum, aspernatur nemo at veniam.
         </p>
       </div>
+      <Outlet />
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import React from "react";
+// import { Outlet } from "react-router-dom";
 import Navbar from "./navbar";
+import RoleAuth from "./RoleAuth";
 
 const About = () => {
   const title = "Halaman About";
@@ -16,7 +18,10 @@ const About = () => {
           autem provident fugit soluta eveniet, dolore ducimus beatae veritatis
           magnam facilis?
         </p>
+        <RoleAuth />
       </div>
+      {/* <hr />
+      <Outlet /> */}
     </div>
   );
 };

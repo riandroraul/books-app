@@ -37,7 +37,7 @@ const Books = () => {
           },
         }).then(async (res) => {
           const books = await res.json();
-          console.log(books);
+          // console.log(books);
           Swal.fire("Deleted!", "Book has been deleted.", "success");
           getBooks();
         });
