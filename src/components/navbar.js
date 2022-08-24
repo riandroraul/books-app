@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import NavUser from "./NavUser";
-import ProtectedContent from "./ProtectedContent";
 
 const Navbar = () => {
   const navigate = useNavigate();

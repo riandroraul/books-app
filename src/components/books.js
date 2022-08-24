@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
+  const [keyword, setkeyword] = useState("");
+
   const getAllBooks = async () => {
     const response = await fetch("http://localhost:5000/books", {
       headers: {
@@ -36,13 +38,29 @@ const Books = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }).then(async (res) => {
-          const books = await res.json();
+          // const books = await res.json();
           // console.log(books);
           Swal.fire("Deleted!", "Book has been deleted.", "success");
           getAllBooks();
         });
       }
     });
+  };
+
+  const onSearch = async () => {
+    const response = await fetch(
+      "http://localhost:5000/books/search?namaBuku=" + keyword,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    // console.log(JSON.parse(localStorage.getItem("userLogin")));
+    const result = await response.json();
+    // console.log(keyword);
+    setBooks(result);
   };
 
   useEffect(() => {
@@ -62,6 +80,28 @@ const Books = () => {
         </Link>
 
         {/* <div className="alert alert-success col-md-6" role="alert"></div> */}
+        <div className="col-md-6 my-3">
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="search nama buku"
+              aria-label="search nama buku"
+              value={keyword}
+              onChange={(event) => setkeyword(event.target.value)}
+            />
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              id="button-addon2"
+              onClick={() => {
+                onSearch();
+              }}
+            >
+              search
+            </button>
+          </div>
+        </div>
         <table className="table table-hover">
           <thead>
             <tr>
