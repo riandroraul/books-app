@@ -37,7 +37,6 @@ function App() {
             </ProtectedRoutes>
           }
         ></Route>
-
         <Route
           path="/about"
           element={

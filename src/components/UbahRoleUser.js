@@ -18,7 +18,7 @@ const UbahRoleUser = () => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(data),
     };
@@ -50,10 +50,11 @@ const UbahRoleUser = () => {
     const response = await fetch(`http://localhost:5000/users/${id}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
     const { user } = await response.json();
+    // console.log(user);
     setNamaUser(user.nama);
     setEmailUser(user.email);
     setRoleUser(user.role);
@@ -61,6 +62,8 @@ const UbahRoleUser = () => {
 
   useEffect(() => {
     getUserById();
+    localStorage.getItem("userLogin");
+    localStorage.getItem("token");
   }, []);
 
   const title = "Ubah Role User";

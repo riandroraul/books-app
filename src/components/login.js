@@ -22,7 +22,7 @@ const Login = () => {
 
     const response = await fetch("http://localhost:5000/login", requestOptions);
     const { cekUser: user, message, token } = await response.json();
-    console.log(user);
+    // console.log(user);
     if (response.status !== 200) {
       navigate("/login");
       Swal.fire({

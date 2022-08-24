@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import NavUser from "./NavUser";
+import ProtectedContent from "./ProtectedContent";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const onLogout = () => {
-    localStorage.clear("userLogin");
-    localStorage.clear("token");
-    navigate("/login");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Your session will be removed!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Logout",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Logout Success!", "", "success");
+        localStorage.clear("userLogin");
+        localStorage.clear("token");
+        navigate("/login");
+      }
+    });
   };
+
+  // useEffect(() => {
+  //   localStorage.getItem("userLogin");
+  // });
 
   return (
     <nav className="navbar navbar-expand-lg bg-secondary">

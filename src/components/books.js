@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
-  const getBooks = async () => {
+  const getAllBooks = async () => {
     const response = await fetch("http://localhost:5000/books", {
       headers: {
         "Content-Type": "application/json",
@@ -13,7 +13,7 @@ const Books = () => {
       },
     });
     // console.log(JSON.parse(localStorage.getItem("userLogin")));
-    const { books } = await response.json();
+    const books = await response.json();
     setBooks(books);
   };
 
@@ -39,14 +39,16 @@ const Books = () => {
           const books = await res.json();
           // console.log(books);
           Swal.fire("Deleted!", "Book has been deleted.", "success");
-          getBooks();
+          getAllBooks();
         });
       }
     });
   };
 
   useEffect(() => {
-    getBooks(); // dijalankan saat halaman books ini di render
+    getAllBooks(); // dijalankan saat halaman books ini di render
+    localStorage.getItem("userLogin");
+    localStorage.getItem("token");
   }, []);
 
   const title = "Halaman Buku";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./navbar";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -26,7 +26,7 @@ const TambahBuku = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userLogin")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(data),
     };
@@ -53,6 +53,11 @@ const TambahBuku = () => {
       });
     }
   };
+
+  useEffect(() => {
+    localStorage.getItem("userLogin");
+    localStorage.getItem("token");
+  });
 
   const title = "Halaman Tambah Buku";
   return (
