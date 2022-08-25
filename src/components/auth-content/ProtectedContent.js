@@ -3,13 +3,10 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedContent = (props) => {
   const userLogin = JSON.parse(localStorage.getItem("userLogin"));
-  console.log(userLogin.role);
-  if (!userLogin) {
-    return <Navigate to="/login" />;
-  } else if (userLogin.role === 1) {
-    return props.children;
+  if (userLogin.role === "3") {
+    return <Navigate to="/books" />;
   }
-  return <Navigate to="/" />;
+  return props.children;
 };
 
 export default ProtectedContent;

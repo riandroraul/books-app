@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -31,11 +32,11 @@ const Login = () => {
         title: message,
       });
     } else {
-      // const decode = jwtDecode(user.token);
-      // const iat = new Date(decode.iat * 1000);
-      // const exp = new Date(decode.exp * 1000);
-      // console.log(iat);
-      // console.log(exp);
+      const decode = jwtDecode(token);
+      const iat = new Date(decode.iat * 1000);
+      const exp = new Date(decode.exp * 1000);
+      console.log(iat);
+      console.log(exp);
       localStorage.setItem("token", token);
       localStorage.setItem("userLogin", JSON.stringify(user));
       // console.log(decode);

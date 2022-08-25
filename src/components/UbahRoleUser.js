@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./navbar";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UbahRoleUser = () => {
@@ -67,6 +67,9 @@ const UbahRoleUser = () => {
   }, []);
 
   const title = "Ubah Role User";
+  if (id === ":id") {
+    return <Navigate to={"/users"} />;
+  }
   return (
     <div>
       <Navbar />
@@ -105,7 +108,7 @@ const UbahRoleUser = () => {
               name="role"
               onChange={(event) => setRoleUser(event.target.value)}
             >
-              <option selected defaultValue={roleUser}>
+              <option selected value={roleUser}>
                 {roleUser}
               </option>
               <option defaultValue={"1"}>1</option>

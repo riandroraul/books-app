@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./navbar";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import ButtonAdd from "./auth-content/ButtonAdd";
+import Aksi from "./auth-content/Aksi";
+// import ProtectedContent from "./ProtectedContent";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -53,13 +55,11 @@ const Books = () => {
       {
         headers: {
           "Content-Type": "application/json",
-          // Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
-    // console.log(JSON.parse(localStorage.getItem("userLogin")));
     const result = await response.json();
-    // console.log(keyword);
     setBooks(result);
   };
 
@@ -75,9 +75,7 @@ const Books = () => {
       <Navbar />
       <div className="container">
         <h1>{title}</h1>
-        <Link to="/tambah" className="btn btn-primary my-3">
-          Tambah Data Buku
-        </Link>
+        <ButtonAdd path="/tambah" />
 
         {/* <div className="alert alert-success col-md-6" role="alert"></div> */}
         <div className="col-md-6 my-3">
@@ -109,7 +107,8 @@ const Books = () => {
               <th scope="col">Nama Buku</th>
               <th scope="col">Penerbit</th>
               <th scope="col">Pengarang</th>
-              <th scope="col">Aksi</th>
+              <Aksi type={"th"} />
+              {/* <th scope="col">Aksi</th> */}
             </tr>
           </thead>
           <tbody>
@@ -120,7 +119,13 @@ const Books = () => {
                   <td>{book.namaBuku}</td>
                   <td>{book.penerbit}</td>
                   <td>{book.pengarang}</td>
-                  <td>
+                  <Aksi
+                    path={`/ubah/${book._id}`}
+                    onclick={() => {
+                      deleteBook(book._id);
+                    }}
+                  />
+                  {/* <td>
                     <Link to={`/ubah/${book._id}`}>
                       <span className="badge text-bg-success">ubah</span>
                     </Link>
@@ -133,7 +138,7 @@ const Books = () => {
                     >
                       hapus
                     </button>
-                  </td>
+                  </td> */}
                 </tr>
               );
             })}

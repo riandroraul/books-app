@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Navbar from "./navbar";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 const UbahBuku = () => {
   const [namaBuku, setNamaBuku] = useState("");
@@ -18,6 +18,7 @@ const UbahBuku = () => {
     if (!userLogin) {
       return navigate("/login");
     }
+    // console.log(typeof id);
     const data = {
       namaBuku,
       penerbit,
@@ -76,6 +77,9 @@ const UbahBuku = () => {
   }, []);
 
   const title = "Ubah Data Buku";
+  if (id === ":id") {
+    return <Navigate to={"/books"} />;
+  }
   return (
     <div>
       <Navbar />
@@ -91,7 +95,7 @@ const UbahBuku = () => {
               className="form-control"
               name="namaBuku"
               id="namaBuku"
-              placeholder="masukkan nama Buku.."
+              placeholder="masukkan nama Buku..."
               required
               value={namaBuku}
               onChange={(event) => setNamaBuku(event.target.value)}

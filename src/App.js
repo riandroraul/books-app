@@ -9,14 +9,14 @@ import Register from "./components/register";
 import UbahRoleUser from "./components/UbahRoleUser";
 import Home from "./components/Home";
 import About from "./components/about";
-// import UserContext from "./components/UserContext";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-// import TestOutlet from "./components/TestOutlet";
 import PageError from "./components/PageError";
+import ProtectedContent from "./components/auth-content/ProtectedContent";
+import PageUser from "./components/auth-content/PageUser";
+import ExpiredToken from "./components/ExpiredToken";
 
 function App() {
-  // const userLogin = JSON.parse(localStorage.getItem("userLogin"));
-  // console.log(decode);
+  // console.log(exp);
   // const [user] = useState(userLogin);
 
   useEffect(() => {
@@ -24,6 +24,11 @@ function App() {
     localStorage.getItem("userLogin");
   });
   // console.log(user);
+
+  // if (exp * 1000 < Date.now()) {
+  //   localStorage.clear();
+  //   return <div>testtt</div>;
+  // }
   return (
     <BrowserRouter>
       {/* <UserContext.Provider value={{ user }}> */}
@@ -32,17 +37,21 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoutes>
-              <Home />
-            </ProtectedRoutes>
+            <ExpiredToken>
+              <ProtectedRoutes>
+                <Home />
+              </ProtectedRoutes>
+            </ExpiredToken>
           }
         ></Route>
         <Route
           path="/about"
           element={
-            <ProtectedRoutes>
-              <About />
-            </ProtectedRoutes>
+            <ExpiredToken>
+              <ProtectedRoutes>
+                <About />
+              </ProtectedRoutes>
+            </ExpiredToken>
           }
         >
           {/* <Route path="outlet" element={<TestOutlet />}></Route> */}
@@ -54,45 +63,68 @@ function App() {
         <Route
           path="/books"
           element={
-            <ProtectedRoutes>
-              <Books />
-            </ProtectedRoutes>
+            <ExpiredToken>
+              <ProtectedRoutes>
+                <Books />
+              </ProtectedRoutes>
+            </ExpiredToken>
           }
         ></Route>
         <Route
           path="/users"
           element={
-            <ProtectedRoutes>
-              <Users />
-            </ProtectedRoutes>
+            <ExpiredToken>
+              <ProtectedRoutes>
+                <PageUser>
+                  <Users />
+                </PageUser>
+              </ProtectedRoutes>
+            </ExpiredToken>
           }
         ></Route>
         <Route
           path="/tambah"
           element={
-            <ProtectedRoutes>
-              <TambahBuku />
-            </ProtectedRoutes>
+            <ExpiredToken>
+              <ProtectedRoutes>
+                <ProtectedContent>
+                  <TambahBuku />
+                </ProtectedContent>
+              </ProtectedRoutes>
+            </ExpiredToken>
           }
         ></Route>
         <Route
           path="/ubah/:id"
           element={
-            <ProtectedRoutes>
-              <UbahBuku />
-            </ProtectedRoutes>
+            <ExpiredToken>
+              <ProtectedRoutes>
+                <ProtectedContent>
+                  <UbahBuku />
+                </ProtectedContent>
+              </ProtectedRoutes>
+            </ExpiredToken>
           }
         ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/ubahRoleUser/:id"
           element={
-            <ProtectedRoutes>
-              <UbahRoleUser />
-            </ProtectedRoutes>
+            <ExpiredToken>
+              <ProtectedRoutes>
+                <UbahRoleUser />
+              </ProtectedRoutes>
+            </ExpiredToken>
           }
         ></Route>
-        <Route path="*" element={<PageError />}></Route>
+        <Route
+          path="*"
+          element={
+            <ExpiredToken>
+              <PageError />
+            </ExpiredToken>
+          }
+        ></Route>
       </Routes>
       {/* </UserContext.Provider> */}
     </BrowserRouter>
