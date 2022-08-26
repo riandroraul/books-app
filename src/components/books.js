@@ -62,12 +62,12 @@ const Books = () => {
     const result = await response.json();
     setBooks(result);
   };
-
   useEffect(() => {
     getAllBooks(); // dijalankan saat halaman books ini di render
     localStorage.getItem("userLogin");
     localStorage.getItem("token");
-  }, []);
+    onSearch();
+  }, [keyword]);
 
   const title = "Halaman Buku";
   return (
@@ -76,8 +76,6 @@ const Books = () => {
       <div className="container">
         <h1>{title}</h1>
         <ButtonAdd path="/tambah" />
-
-        {/* <div className="alert alert-success col-md-6" role="alert"></div> */}
         <div className="col-md-6 my-3">
           <div className="input-group mb-3">
             <input
@@ -88,7 +86,7 @@ const Books = () => {
               value={keyword}
               onChange={(event) => setkeyword(event.target.value)}
             />
-            <button
+            {/* <button
               className="btn btn-outline-secondary"
               type="button"
               id="button-addon2"
@@ -97,7 +95,7 @@ const Books = () => {
               }}
             >
               search
-            </button>
+            </button> */}
           </div>
         </div>
         <table className="table table-hover">

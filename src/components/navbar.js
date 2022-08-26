@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+// import Clock from "./Clock";
 import NavUser from "./NavUser";
 
 const Navbar = () => {
@@ -47,6 +48,9 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav justify-content-end flex-grow-1 pe-2">
+            {/* <li className="nav-item">
+              <span>{<Clock date={new Date()} />}</span>
+            </li> */}
             <li className="nav-item">
               <Link
                 className="nav-link text-light"

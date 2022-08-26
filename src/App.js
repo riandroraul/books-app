@@ -9,11 +9,10 @@ import Register from "./components/register";
 import UbahRoleUser from "./components/UbahRoleUser";
 import Home from "./components/Home";
 import About from "./components/about";
-import ProtectedRoutes from "./components/ProtectedRoutes";
+import ProtectedRoutes from "./components/auth-content/ProtectedRoutes";
 import PageError from "./components/PageError";
 import ProtectedContent from "./components/auth-content/ProtectedContent";
 import PageUser from "./components/auth-content/PageUser";
-import ExpiredToken from "./components/ExpiredToken";
 
 function App() {
   // console.log(exp);
@@ -33,25 +32,22 @@ function App() {
     <BrowserRouter>
       {/* <UserContext.Provider value={{ user }}> */}
       <Routes>
+        <Route path="*" element={<PageError />}></Route>
         {/* public routes */}
         <Route
           path="/"
           element={
-            <ExpiredToken>
-              <ProtectedRoutes>
-                <Home />
-              </ProtectedRoutes>
-            </ExpiredToken>
+            <ProtectedRoutes>
+              <Home />
+            </ProtectedRoutes>
           }
         ></Route>
         <Route
           path="/about"
           element={
-            <ExpiredToken>
-              <ProtectedRoutes>
-                <About />
-              </ProtectedRoutes>
-            </ExpiredToken>
+            <ProtectedRoutes>
+              <About />
+            </ProtectedRoutes>
           }
         >
           {/* <Route path="outlet" element={<TestOutlet />}></Route> */}
@@ -63,66 +59,48 @@ function App() {
         <Route
           path="/books"
           element={
-            <ExpiredToken>
-              <ProtectedRoutes>
-                <Books />
-              </ProtectedRoutes>
-            </ExpiredToken>
+            <ProtectedRoutes>
+              <Books />
+            </ProtectedRoutes>
           }
         ></Route>
         <Route
           path="/users"
           element={
-            <ExpiredToken>
-              <ProtectedRoutes>
-                <PageUser>
-                  <Users />
-                </PageUser>
-              </ProtectedRoutes>
-            </ExpiredToken>
+            <ProtectedRoutes>
+              <PageUser>
+                <Users />
+              </PageUser>
+            </ProtectedRoutes>
           }
         ></Route>
         <Route
           path="/tambah"
           element={
-            <ExpiredToken>
-              <ProtectedRoutes>
-                <ProtectedContent>
-                  <TambahBuku />
-                </ProtectedContent>
-              </ProtectedRoutes>
-            </ExpiredToken>
+            <ProtectedRoutes>
+              <ProtectedContent>
+                <TambahBuku />
+              </ProtectedContent>
+            </ProtectedRoutes>
           }
         ></Route>
         <Route
           path="/ubah/:id"
           element={
-            <ExpiredToken>
-              <ProtectedRoutes>
-                <ProtectedContent>
-                  <UbahBuku />
-                </ProtectedContent>
-              </ProtectedRoutes>
-            </ExpiredToken>
+            <ProtectedRoutes>
+              <ProtectedContent>
+                <UbahBuku />
+              </ProtectedContent>
+            </ProtectedRoutes>
           }
         ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/ubahRoleUser/:id"
           element={
-            <ExpiredToken>
-              <ProtectedRoutes>
-                <UbahRoleUser />
-              </ProtectedRoutes>
-            </ExpiredToken>
-          }
-        ></Route>
-        <Route
-          path="*"
-          element={
-            <ExpiredToken>
-              <PageError />
-            </ExpiredToken>
+            <ProtectedRoutes>
+              <UbahRoleUser />
+            </ProtectedRoutes>
           }
         ></Route>
       </Routes>

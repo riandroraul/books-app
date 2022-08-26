@@ -24,9 +24,15 @@ const Login = () => {
     const response = await fetch("http://localhost:5000/login", requestOptions);
     const { cekUser: user, message, token } = await response.json();
     // console.log(user);
+    if (email === "" || password === "") {
+      return Swal.fire({
+        icon: "error",
+        text: "field email and password must be fill",
+        title: "Email and Password is Required!",
+      });
+    }
     if (response.status !== 200) {
-      navigate("/login");
-      Swal.fire({
+      return Swal.fire({
         icon: "error",
         text: "Ensure your email and password matching!",
         title: message,
@@ -35,8 +41,9 @@ const Login = () => {
       const decode = jwtDecode(token);
       const iat = new Date(decode.iat * 1000);
       const exp = new Date(decode.exp * 1000);
-      console.log(iat);
-      console.log(exp);
+
+      console.log(`token set at: ${iat}`);
+      console.log(`token expired at: ${exp}`);
       localStorage.setItem("token", token);
       localStorage.setItem("userLogin", JSON.stringify(user));
       // console.log(decode);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./navbar";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UbahRoleUser = () => {
@@ -67,9 +67,9 @@ const UbahRoleUser = () => {
   }, []);
 
   const title = "Ubah Role User";
-  if (id === ":id") {
-    return <Navigate to={"/users"} />;
-  }
+  // if (id === "*") {
+  //   return <Navigate to={"/users"} />;
+  // }
   return (
     <div>
       <Navbar />

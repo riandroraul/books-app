@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Navbar from "./navbar";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UbahBuku = () => {
   const [namaBuku, setNamaBuku] = useState("");
@@ -38,7 +38,7 @@ const UbahBuku = () => {
       requestOptions
     );
     const books = await response.json();
-    // console.log(response.status);
+    console.log(response.status);
     // console.log(books);
     if (response.status === 200) {
       navigate("/books");
@@ -48,12 +48,12 @@ const UbahBuku = () => {
         title: books.message,
       });
     } else {
-      navigate("/ubah/:id");
       Swal.fire({
         icon: "warning",
-        type: "success",
+        type: "warning",
         title: books.message,
       });
+      // navigate("/ubah/:id");
     }
   };
 
@@ -77,9 +77,9 @@ const UbahBuku = () => {
   }, []);
 
   const title = "Ubah Data Buku";
-  if (id === ":id") {
-    return <Navigate to={"/books"} />;
-  }
+  // if (id === ":id") {
+  //   return <Navigate to={"/books"} />;
+  // }
   return (
     <div>
       <Navbar />
