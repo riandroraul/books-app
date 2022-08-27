@@ -32,7 +32,8 @@ const Register = () => {
       Swal.fire({
         icon: "success",
         type: "success",
-        title: `${users.message} silahkan login!`,
+        text: "silahkan login!",
+        title: `${users.message}`,
       });
     } else {
       navigate("/register");
