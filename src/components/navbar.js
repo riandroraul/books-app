@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-// import Clock from "./Clock";
 import NavUser from "./NavUser";
 
 const Navbar = () => {

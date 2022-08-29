@@ -38,8 +38,6 @@ const UbahBuku = () => {
       requestOptions
     );
     const books = await response.json();
-    console.log(response.status);
-    // console.log(books);
     if (response.status === 200) {
       navigate("/books");
       Swal.fire({

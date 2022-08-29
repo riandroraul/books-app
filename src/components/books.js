@@ -7,7 +7,7 @@ import Aksi from "./auth-content/Aksi";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
-  const [keyword, setkeyword] = useState("");
+  const [keyword, setKeyword] = useState("");
 
   const getAllBooks = async () => {
     const response = await fetch("http://localhost:5000/books", {
@@ -18,6 +18,7 @@ const Books = () => {
     });
     // console.log(JSON.parse(localStorage.getItem("userLogin")));
     const books = await response.json();
+    // console.log(books);
     setBooks(books);
   };
 
@@ -62,12 +63,17 @@ const Books = () => {
     const result = await response.json();
     setBooks(result);
   };
+
   useEffect(() => {
-    getAllBooks(); // dijalankan saat halaman books ini di render
     localStorage.getItem("userLogin");
     localStorage.getItem("token");
-    onSearch();
-  }, [keyword]);
+    if (keyword === "") {
+      getAllBooks(); // dijalankan saat halaman books ini di render
+    } else {
+      onSearch();
+    }
+    // onSearch();
+  }, [books, keyword]);
 
   const title = "Halaman Buku";
   return (
@@ -81,10 +87,10 @@ const Books = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="search nama buku"
-              aria-label="search nama buku"
+              placeholder="cari nama buku ..."
+              aria-label="cari nama buku"
               value={keyword}
-              onChange={(event) => setkeyword(event.target.value)}
+              onChange={(event) => setKeyword(event.target.value)}
             />
             {/* <button
               className="btn btn-outline-secondary"
@@ -109,6 +115,7 @@ const Books = () => {
               {/* <th scope="col">Aksi</th> */}
             </tr>
           </thead>
+
           <tbody>
             {books.map((book, index) => {
               return (

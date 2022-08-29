@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const [keyword, setKeyword] = useState("");
   // const { id } = useParams();
 
   const getUsers = () => {
@@ -16,6 +17,7 @@ const Users = () => {
     })
       .then((res) => res.json())
       .then((res) => {
+        console.log(res);
         setUsers(res);
       });
   };
@@ -56,15 +58,46 @@ const Users = () => {
     });
   };
 
+  const searchUser = async () => {
+    const response = await fetch(
+      `http://localhost:5000/searchUser?nama=${keyword}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    const result = await response.json();
+    setUsers(result);
+  };
+
   useEffect(() => {
-    getUsers(); // dijalankan saat halaman books ini di render
-  }, []);
+    // searchUser();
+    if (keyword === "") {
+      getUsers(); // dijalankan saat halaman books ini di render
+    } else {
+      searchUser();
+    }
+  }, [keyword]);
   const title = "Halaman Users";
   return (
     <div>
       <Navbar />
       <div className="container">
         <h1>{title}</h1>
+        <div className="col-md-6 my-3">
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="cari nama user ..."
+              aria-label="cari nama user"
+              value={keyword}
+              onChange={(event) => setKeyword(event.target.value)}
+            />
+          </div>
+        </div>
         <div className="col-md-6">
           <table className="table table-hover">
             <thead>

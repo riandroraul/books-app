@@ -35,8 +35,8 @@ const TambahBuku = () => {
       requestOptions
     );
     const books = await response.json();
-    console.log(response.status);
-    console.log(books);
+    // console.log(response.status);
+    // console.log(books);
     if (response.status === 201) {
       navigate("/books");
       Swal.fire({
