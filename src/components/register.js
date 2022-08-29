@@ -25,8 +25,6 @@ const Register = () => {
       requestOptions
     );
     const users = await response.json();
-    // console.log(response.status);
-    // console.log(users);
     if (response.status === 201) {
       navigate("/login");
       Swal.fire({

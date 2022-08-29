@@ -17,7 +17,6 @@ const Users = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setUsers(res);
       });
   };
@@ -79,7 +78,7 @@ const Users = () => {
     } else {
       searchUser();
     }
-  }, [keyword]);
+  }, [keyword, users]);
   const title = "Halaman Users";
   return (
     <div>
