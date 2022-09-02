@@ -16,6 +16,7 @@ const Books = () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
+    console.log(response);
     // console.log(JSON.parse(localStorage.getItem("userLogin")));
     const books = await response.json();
     // console.log(books);
@@ -68,12 +69,10 @@ const Books = () => {
     localStorage.getItem("userLogin");
     localStorage.getItem("token");
     if (keyword === "") {
-      console.log("getAllBooks()");
       getAllBooks(); // dijalankan saat halaman books ini di render
     } else {
       onSearch();
     }
-    // onSearch();
   }, [keyword]);
 
   const title = "Halaman Buku";

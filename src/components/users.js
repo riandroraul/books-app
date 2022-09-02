@@ -72,9 +72,8 @@ const Users = () => {
   };
 
   useEffect(() => {
-    // searchUser();
     if (keyword === "") {
-      getUsers(); // dijalankan saat halaman books ini di render
+      getUsers(); // dijalankan saat halaman users ini di render
     } else {
       searchUser();
     }
