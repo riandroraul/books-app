@@ -68,12 +68,13 @@ const Books = () => {
     localStorage.getItem("userLogin");
     localStorage.getItem("token");
     if (keyword === "") {
+      console.log("getAllBooks()");
       getAllBooks(); // dijalankan saat halaman books ini di render
     } else {
       onSearch();
     }
     // onSearch();
-  }, [books, keyword]);
+  }, [keyword]);
 
   const title = "Halaman Buku";
   return (

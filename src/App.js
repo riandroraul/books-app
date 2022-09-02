@@ -18,10 +18,10 @@ function App() {
   // console.log(exp);
   // const [user] = useState(userLogin);
 
-  useEffect(() => {
-    localStorage.getItem("token");
-    localStorage.getItem("userLogin");
-  });
+  // useEffect(() => {
+  //   localStorage.getItem("token");
+  //   localStorage.getItem("userLogin");
+  // }, []);
   // console.log(user);
 
   // if (exp * 1000 < Date.now()) {

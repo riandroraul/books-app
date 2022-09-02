@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import jwtDecode from "jwt-decode";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +9,13 @@ const Login = () => {
 
   const onLogin = async (event) => {
     event.preventDefault();
+    if (email === "" || password === "") {
+      return Swal.fire({
+        icon: "error",
+        text: "field email and password must be fill",
+        title: "Email and Password is Required!",
+      });
+    }
     const cekUser = {
       email,
       password,
@@ -22,37 +28,31 @@ const Login = () => {
     };
 
     const response = await fetch("http://localhost:5000/login", requestOptions);
-    const { cekUser: user, message, token } = await response.json();
-    // console.log(user);
-    if (email === "" || password === "") {
-      return Swal.fire({
-        icon: "error",
-        text: "field email and password must be fill",
-        title: "Email and Password is Required!",
-      });
-    }
+    const { dataUser: user, message, token } = await response.json();
+    console.log(response);
     if (response.status !== 200) {
       return Swal.fire({
         icon: "error",
         text: "Ensure your email and password matching!",
         title: message,
       });
-    } else {
-      const decode = jwtDecode(token);
-      const iat = new Date(decode.iat * 1000);
-      const exp = new Date(decode.exp * 1000);
-
-      console.log(`token set at: ${iat}`);
-      console.log(`token expired at: ${exp}`);
-      localStorage.setItem("token", token);
-      localStorage.setItem("userLogin", JSON.stringify(user));
-      // console.log(decode);
-      navigate("/books");
-      Swal.fire({
-        icon: "success",
-        title: message,
-      });
     }
+    // else {
+    // const decode = jwtDecode(token);
+    // const iat = new Date(decode.iat * 1000);
+    // const exp = new Date(decode.exp * 1000);
+
+    // console.log(`token set at: ${iat}`);
+    // console.log(`token expired at: ${exp}`);
+    localStorage.setItem("token", token);
+    localStorage.setItem("userLogin", JSON.stringify(user));
+    // console.log(decode);
+    navigate("/books");
+    return Swal.fire({
+      icon: "success",
+      title: message,
+    });
+    // }
   };
 
   const title = "Halaman Login";

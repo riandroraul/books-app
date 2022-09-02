@@ -47,10 +47,10 @@ const Users = () => {
           console.log(deletedCount);
           if (deletedCount === 1) {
             Swal.fire("Deleted!", message, "success");
-            getUsers();
+            return getUsers();
           } else {
             Swal.fire("Deleted Failed!", message, "error");
-            getUsers();
+            return getUsers();
           }
         });
       }
@@ -78,7 +78,7 @@ const Users = () => {
     } else {
       searchUser();
     }
-  }, [keyword, users]);
+  }, [keyword]);
   const title = "Halaman Users";
   return (
     <div>
