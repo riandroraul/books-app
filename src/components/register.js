@@ -21,7 +21,7 @@ const Register = () => {
       body: JSON.stringify(newUser),
     };
     const response = await fetch(
-      "http://localhost:5000/tambahUser",
+      "https://api-bukuku.herokuapp.com/tambahUser",
       requestOptions
     );
     const users = await response.json();

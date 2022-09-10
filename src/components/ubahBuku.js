@@ -34,7 +34,7 @@ const UbahBuku = () => {
       body: JSON.stringify(data),
     };
     const response = await fetch(
-      `http://localhost:5000/books/ubah/${id}`,
+      `https://api-bukuku.herokuapp.com/books/ubah/${id}`,
       requestOptions
     );
     const books = await response.json();
@@ -56,12 +56,15 @@ const UbahBuku = () => {
   };
 
   const getBookById = async () => {
-    const response = await fetch(`http://localhost:5000/books/id/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+    const response = await fetch(
+      `https://api-bukuku.herokuapp.com/books/id/${id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     const { book } = await response.json();
     setNamaBuku(book.namaBuku);
     setPenerbit(book.penerbit);

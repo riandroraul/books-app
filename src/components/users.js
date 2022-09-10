@@ -9,7 +9,7 @@ const Users = () => {
   // const { id } = useParams();
 
   const getUsers = () => {
-    fetch("http://localhost:5000/users", {
+    fetch("https://api-bukuku.herokuapp.com/users", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -33,7 +33,7 @@ const Users = () => {
       onClick: (event) => event.preventDefault(),
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/hapusUser/${id}`, {
+        fetch(`https://api-bukuku.herokuapp.com/hapusUser/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const Users = () => {
 
   const searchUser = async () => {
     const response = await fetch(
-      `http://localhost:5000/searchUser?nama=${keyword}`,
+      `https://api-bukuku.herokuapp.com/searchUser?nama=${keyword}`,
       {
         headers: {
           "Content-Type": "application/json",

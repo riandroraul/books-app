@@ -27,7 +27,10 @@ const Login = () => {
       body: JSON.stringify(cekUser),
     };
 
-    const response = await fetch("http://localhost:5000/login", requestOptions);
+    const response = await fetch(
+      "https://api-bukuku.herokuapp.com/login",
+      requestOptions
+    );
     const { dataUser: user, message, token } = await response.json();
     console.log(response);
     if (response.status !== 200) {

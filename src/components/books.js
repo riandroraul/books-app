@@ -10,7 +10,7 @@ const Books = () => {
   const [keyword, setKeyword] = useState("");
 
   const getAllBooks = async () => {
-    const response = await fetch("http://localhost:5000/books", {
+    const response = await fetch("https://api-bukuku.herokuapp.com/books", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -35,7 +35,7 @@ const Books = () => {
       onClick: (event) => event.preventDefault(),
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/books/hapus/${id}`, {
+        fetch(`https://api-bukuku.herokuapp.com/books/hapus/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const Books = () => {
 
   const onSearch = async () => {
     const response = await fetch(
-      "http://localhost:5000/books/search?namaBuku=" + keyword,
+      "https://api-bukuku.herokuapp.com/books/search?namaBuku=" + keyword,
       {
         headers: {
           "Content-Type": "application/json",

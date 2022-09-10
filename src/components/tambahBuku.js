@@ -30,7 +30,7 @@ const TambahBuku = () => {
       body: JSON.stringify(data),
     };
     const response = await fetch(
-      "http://localhost:5000/books/tambah",
+      "https://api-bukuku.herokuapp.com/books/tambah",
       requestOptions
     );
     const books = await response.json();

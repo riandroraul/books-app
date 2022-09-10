@@ -24,7 +24,7 @@ const UbahRoleUser = () => {
     };
 
     const response = await fetch(
-      `http://localhost:5000/ubahRoleUser/${id}`,
+      `https://api-bukuku.herokuapp.com/ubahRoleUser/${id}`,
       requestOptions
     );
     // console.log(response);
@@ -47,12 +47,15 @@ const UbahRoleUser = () => {
   };
 
   const getUserById = async () => {
-    const response = await fetch(`http://localhost:5000/users/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+    const response = await fetch(
+      `https://api-bukuku.herokuapp.com/users/${id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     const { user } = await response.json();
     // console.log(user);
     setNamaUser(user.nama);
