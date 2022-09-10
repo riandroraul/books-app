@@ -32,7 +32,7 @@ const Login = () => {
       requestOptions
     );
     const { dataUser: user, message, token } = await response.json();
-    console.log(response);
+    // console.log(response);
     if (response.status !== 200) {
       return Swal.fire({
         icon: "error",
