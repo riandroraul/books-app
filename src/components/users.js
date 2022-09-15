@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [keyword, setKeyword] = useState("");
-  // const { id } = useParams();
 
   const getUsers = () => {
     fetch("https://api-bukuku.herokuapp.com/users", {
@@ -119,11 +118,13 @@ const Users = () => {
                     <td>{user.role}</td>
                     <td>
                       <Link to={`/ubahRoleUser/${user._id}`}>
-                        <span className="badge text-bg-success">ubah</span>
+                        <button className="badge btn-outline-light text-bg-success">
+                          ubah
+                        </button>
                       </Link>
                       <button
                         type="submit"
-                        className="badge text-bg-danger"
+                        className=" badge btn-outline-light text-bg-danger"
                         onClick={() => {
                           deleteUser(user._id);
                         }}

@@ -16,10 +16,7 @@ const Books = () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    console.log(response);
-    // console.log(JSON.parse(localStorage.getItem("userLogin")));
     const books = await response.json();
-    // console.log(books);
     setBooks(books);
   };
 
