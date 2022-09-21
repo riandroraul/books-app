@@ -45,60 +45,76 @@ const Register = () => {
 
   const title = "Halaman Register";
   return (
-    <div className="container">
-      <h1>{title}</h1>
-      <form onSubmit={register}>
-        <div className="mb-3 col-lg-6">
-          <label htmlFor="nama" className="form-label">
-            Nama
-          </label>
-          <input
-            type="text"
-            className="form-control col-md-6"
-            id="nama"
-            name="nama"
-            required
-            value={nama}
-            onChange={(event) => setName(event.target.value)}
-          />
+    <div className="min-vh-100 bg-secondary bg-opacity-50">
+      <div className="container">
+        <div className="row d-flex justify-content-center">
+          <div className="col col-md-6">
+            <div className="card p-3 my-5">
+              <h1>{title}</h1>
+              <form onSubmit={register}>
+                <div className="col">
+                  <div className="mb-3">
+                    <label htmlFor="nama" className="form-label">
+                      Nama
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control col-md-6"
+                      id="nama"
+                      name="nama"
+                      required
+                      value={nama}
+                      onChange={(event) => setName(event.target.value)}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label">
+                      Email address
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      className="form-control col-md-6"
+                      required
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="password" className="form-label">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control col-md-6"
+                      name="password"
+                      id="password"
+                      required
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                    />
+                  </div>
+                  <div className="my-3">
+                    <span>
+                      sudah punya akun ? silahkan{" "}
+                      <a href="/login" className="text-decoration-none">
+                        login
+                      </a>
+                    </span>
+                  </div>
+                  <button
+                    type="submit"
+                    className="form-control btn btn-primary"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <div className="mb-3 col-lg-6">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="form-control col-md-6"
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </div>
-        <div className="mb-3 col-lg-6">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control col-md-6"
-            name="password"
-            id="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
-        <div className="my-3 col-lg-6">
-          <span>
-            sudah punya akun ? silahkan <a href="/login">Login</a>
-          </span>
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+      </div>
     </div>
   );
 };

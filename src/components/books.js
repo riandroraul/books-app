@@ -101,51 +101,53 @@ const Books = () => {
             </button> */}
           </div>
         </div>
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">No</th>
-              <th scope="col">Nama Buku</th>
-              <th scope="col">Penerbit</th>
-              <th scope="col">Pengarang</th>
-              <Aksi type={"th"} />
-              {/* <th scope="col">Aksi</th> */}
-            </tr>
-          </thead>
+        <div className="table table-responsive">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama Buku</th>
+                <th scope="col">Penerbit</th>
+                <th scope="col">Pengarang</th>
+                <Aksi type={"th"} />
+                {/* <th scope="col">Aksi</th> */}
+              </tr>
+            </thead>
 
-          <tbody>
-            {books.map((book, index) => {
-              return (
-                <tr key={book._id}>
-                  <th scope="row">{index + 1}</th>
-                  <td>{book.namaBuku}</td>
-                  <td>{book.penerbit}</td>
-                  <td>{book.pengarang}</td>
-                  <Aksi
-                    path={`/ubah/${book._id}`}
-                    onclick={() => {
-                      deleteBook(book._id);
-                    }}
-                  />
-                  {/* <td>
-                    <Link to={`/ubah/${book._id}`}>
-                      <span className="badge text-bg-success">ubah</span>
-                    </Link>
-                    <button
-                      type="submit"
-                      className="badge text-bg-danger tombol-hapus"
-                      onClick={() => {
+            <tbody>
+              {books.map((book, index) => {
+                return (
+                  <tr key={book._id}>
+                    <th scope="row">{index + 1}</th>
+                    <td>{book.namaBuku}</td>
+                    <td>{book.penerbit}</td>
+                    <td>{book.pengarang}</td>
+                    <Aksi
+                      path={`/ubah/${book._id}`}
+                      onclick={() => {
                         deleteBook(book._id);
                       }}
+                    />
+                    {/* <td>
+                    <Link to={`/ubah/${book._id}`}>
+                    <span className="badge text-bg-success">ubah</span>
+                    </Link>
+                    <button
+                    type="submit"
+                    className="badge text-bg-danger tombol-hapus"
+                    onClick={() => {
+                      deleteBook(book._id);
+                    }}
                     >
-                      hapus
+                    hapus
                     </button>
                   </td> */}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

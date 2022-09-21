@@ -76,55 +76,66 @@ const UbahRoleUser = () => {
   return (
     <div>
       <Navbar />
-      <div className="container">
-        <h1>{title}</h1>
-        <form onSubmit={handleEdit}>
-          <div className="mb-3 col-md-6">
-            <label htmlFor="nama" className="form-label">
-              Nama
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              value={namaUser}
-              name="nama"
-              id="nama"
-              disabled
-            />
+      <div className="min-vh-100 bg-secondary bg-opacity-50">
+        <div className="container">
+          <div className="row d-flex justify-content-center">
+            <div className="col col-md-6">
+              <div className="card p-3 my-5">
+                <h1>{title}</h1>
+                <form onSubmit={handleEdit}>
+                  <div className="mb-3">
+                    <label htmlFor="nama" className="form-label">
+                      Nama
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={namaUser}
+                      name="nama"
+                      id="nama"
+                      disabled
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      value={emailUser}
+                      name="email"
+                      id="email"
+                      disabled
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <select
+                      className="form-select"
+                      name="role"
+                      onChange={(event) => setRoleUser(event.target.value)}
+                    >
+                      <option selected value={roleUser}>
+                        {roleUser}
+                      </option>
+                      <option defaultValue={"1"}>1</option>
+                      <option defaultValue={"2"}>2</option>
+                      <option defaultValue={"3"}>3</option>
+                    </select>
+                  </div>
+                  <div className="mb-3">
+                    <button
+                      type="submit"
+                      className="form-control btn btn-primary"
+                    >
+                      Ubah Role User
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-          <div className="mb-3 col-md-6">
-            <label htmlFor="email" className="form-label">
-              Email
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              value={emailUser}
-              name="email"
-              id="email"
-              disabled
-            />
-          </div>
-          <div className="mb-3 col-md-6">
-            <select
-              className="form-select"
-              name="role"
-              onChange={(event) => setRoleUser(event.target.value)}
-            >
-              <option selected value={roleUser}>
-                {roleUser}
-              </option>
-              <option defaultValue={"1"}>1</option>
-              <option defaultValue={"2"}>2</option>
-              <option defaultValue={"3"}>3</option>
-            </select>
-          </div>
-          <div className="mb-3 col-md-6">
-            <button type="submit" className="btn btn-primary">
-              Ubah
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   );

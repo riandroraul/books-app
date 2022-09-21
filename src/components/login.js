@@ -60,46 +60,73 @@ const Login = () => {
 
   const title = "Halaman Login";
   return (
-    <div className="container">
-      <h1 className="my-3">{title}</h1>
-      <form onSubmit={onLogin}>
-        <div className="mb-3 col-lg-6">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            placeholder="input email ..."
-            name="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
+    <div className="min-vh-100 bg-secondary bg-opacity-50">
+      <div className="container">
+        <div className="row d-flex justify-content-center">
+          <div className="col col-md-6">
+            <div className="card p-3 my-5">
+              <h1 className="my-3">{title}</h1>
+              <div className="card-body">
+                <form onSubmit={onLogin}>
+                  <div className="col">
+                    <div className="mb-3">
+                      <label htmlFor="email" className="form-label">
+                        Email address
+                      </label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        placeholder="input email ..."
+                        name="email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="exampleInputPassword1"
+                        className="form-label"
+                      >
+                        Password
+                      </label>
+                      <input
+                        type="password"
+                        className="form-control col-md-6"
+                        placeholder="input password ..."
+                        name="password"
+                        id="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                      />
+                    </div>
+                    <div className="my-3 col">
+                      <span className="d-block my-2">
+                        belum punya akun ?{" "}
+                        <a href="/register" className="text-decoration-none">
+                          Register
+                        </a>
+                      </span>
+                      <span>
+                        lupa password ?{" "}
+                        <a href="/login" className="text-decoration-none">
+                          forgot-password
+                        </a>
+                      </span>
+                    </div>
+                    <button
+                      type="submit"
+                      className="form-control btn btn-primary my-2"
+                    >
+                      Login
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="mb-3 col-lg-6">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control col-md-6"
-            placeholder="input password ..."
-            name="password"
-            id="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
-        <div className="my-3 col-lg-6">
-          <span>
-            belum punya akun ? <a href="/register">Register</a>
-          </span>
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Login
-        </button>
-      </form>
+      </div>
     </div>
   );
 };

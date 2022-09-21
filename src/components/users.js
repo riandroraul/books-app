@@ -95,48 +95,50 @@ const Users = () => {
             />
           </div>
         </div>
-        <div className="col-md-6">
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">No</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Email</th>
-                <th scope="col">Role</th>
-                <th scope="col">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => {
-                return (
-                  <tr key={user._id}>
-                    <th scope="row" key={index}>
-                      {index + 1}
-                    </th>
-                    <td>{user.nama}</td>
-                    <td>{user.email}</td>
-                    <td>{user.role}</td>
-                    <td>
-                      <Link to={`/ubahRoleUser/${user._id}`}>
-                        <button className="badge btn-outline-light text-bg-success">
-                          ubah
+        <div className="table table-responsive">
+          <div className="col-md-6">
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Nama</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user, index) => {
+                  return (
+                    <tr key={user._id}>
+                      <th scope="row" key={index}>
+                        {index + 1}
+                      </th>
+                      <td>{user.nama}</td>
+                      <td>{user.email}</td>
+                      <td>{user.role}</td>
+                      <td>
+                        <Link to={`/ubahRoleUser/${user._id}`}>
+                          <button className="badge btn-outline-light text-bg-success">
+                            ubah
+                          </button>
+                        </Link>
+                        <button
+                          type="submit"
+                          className=" badge btn-outline-light text-bg-danger"
+                          onClick={() => {
+                            deleteUser(user._id);
+                          }}
+                        >
+                          hapus
                         </button>
-                      </Link>
-                      <button
-                        type="submit"
-                        className=" badge btn-outline-light text-bg-danger"
-                        onClick={() => {
-                          deleteUser(user._id);
-                        }}
-                      >
-                        hapus
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
