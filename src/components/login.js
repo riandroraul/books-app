@@ -65,7 +65,7 @@ const Login = () => {
         <div className="row d-flex justify-content-center">
           <div className="col col-md-6">
             <div className="card p-3 my-5">
-              <h1 className="my-3">{title}</h1>
+              <h1 className="my-3 text-center">{title}</h1>
               <div className="card-body">
                 <form onSubmit={onLogin}>
                   <div className="col">
@@ -100,29 +100,28 @@ const Login = () => {
                         onChange={(event) => setPassword(event.target.value)}
                       />
                     </div>
-                    <div className="my-3 col">
-                      <span className="d-block my-2">
-                        belum punya akun ?{" "}
-                        <a href="/register" className="text-decoration-none">
-                          Register
-                        </a>
-                      </span>
-                      <span>
-                        lupa password ?{" "}
-                        <a
-                          href="/forgot-password"
-                          className="text-decoration-none"
-                        >
-                          forgot-password
-                        </a>
-                      </span>
-                    </div>
                     <button
                       type="submit"
                       className="form-control btn btn-primary my-2"
                     >
                       Login
                     </button>
+                    <div className="my-3 col">
+                      <span className="d-block my-2">
+                        belum punya akun ? {"  "}
+                        <a href="/register" className="text-decoration-none">
+                          Daftar
+                        </a>
+                      </span>
+                      <span>
+                        <a
+                          href="/forgot-password"
+                          className="text-decoration-none"
+                        >
+                          lupa password ?
+                        </a>
+                      </span>
+                    </div>
                   </div>
                 </form>
               </div>

@@ -13,7 +13,7 @@ const Aksi = (props) => {
         return (
           <td>
             <Link to={props.path}>
-              <button className="badge text-bg-success">ubah</button>
+              <button className="badge text-bg-success mx-2">ubah</button>
             </Link>
             <button
               type="submit"

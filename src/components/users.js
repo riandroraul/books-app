@@ -119,7 +119,7 @@ const Users = () => {
                       <td>{user.role}</td>
                       <td>
                         <Link to={`/ubahRoleUser/${user._id}`}>
-                          <button className="badge btn-outline-light text-bg-success">
+                          <button className="badge btn-outline-light text-bg-success mx-2">
                             ubah
                           </button>
                         </Link>

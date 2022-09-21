@@ -67,7 +67,7 @@ const TambahBuku = () => {
           <div className="row d-flex justify-content-center">
             <div className="col col-md-6">
               <div className="card p-3 my-5">
-                <h1>{title}</h1>
+                <h1 className="text-center">{title}</h1>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <label htmlFor="namaBuku" className="form-label">

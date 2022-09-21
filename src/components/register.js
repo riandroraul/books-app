@@ -50,7 +50,7 @@ const Register = () => {
         <div className="row d-flex justify-content-center">
           <div className="col col-md-6">
             <div className="card p-3 my-5">
-              <h1>{title}</h1>
+              <h1 className="text-center">{title}</h1>
               <form onSubmit={register}>
                 <div className="col">
                   <div className="mb-3">
@@ -95,20 +95,20 @@ const Register = () => {
                       onChange={(event) => setPassword(event.target.value)}
                     />
                   </div>
-                  <div className="my-3">
-                    <span>
-                      sudah punya akun ? silahkan{" "}
-                      <a href="/login" className="text-decoration-none">
-                        login
-                      </a>
-                    </span>
-                  </div>
                   <button
                     type="submit"
                     className="form-control btn btn-primary"
                   >
                     Submit
                   </button>
+                  <div className="my-3">
+                    <span>
+                      sudah punya akun ?{" "}
+                      <a href="/login" className="text-decoration-none">
+                        silahkan login
+                      </a>
+                    </span>
+                  </div>
                 </div>
               </form>
             </div>
