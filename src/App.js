@@ -13,6 +13,7 @@ import ProtectedRoutes from "./components/auth-content/ProtectedRoutes";
 import PageError from "./components/PageError";
 import ProtectedContent from "./components/auth-content/ProtectedContent";
 import PageUser from "./components/auth-content/PageUser";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   // console.log(exp);
@@ -95,6 +96,7 @@ function App() {
           }
         ></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         <Route
           path="/ubahRoleUser/:id"
           element={

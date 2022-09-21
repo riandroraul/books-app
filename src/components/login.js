@@ -109,7 +109,10 @@ const Login = () => {
                       </span>
                       <span>
                         lupa password ?{" "}
-                        <a href="/login" className="text-decoration-none">
+                        <a
+                          href="/forgot-password"
+                          className="text-decoration-none"
+                        >
                           forgot-password
                         </a>
                       </span>
