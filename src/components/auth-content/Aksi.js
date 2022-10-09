@@ -13,11 +13,16 @@ const Aksi = (props) => {
         return (
           <td>
             <Link to={props.path}>
-              <button className="badge text-bg-success mx-2">ubah</button>
+              <button
+                type="button"
+                className="btn btn-outline-success btn-sm mx-2"
+              >
+                ubah
+              </button>
             </Link>
             <button
-              type="submit"
-              className="badge text-bg-danger"
+              type="button"
+              className="btn  btn-outline-danger btn-sm"
               onClick={props.onclick}
             >
               hapus

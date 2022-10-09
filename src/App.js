@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Books from "./components/books";
 import Users from "./components/users";
@@ -14,6 +14,7 @@ import PageError from "./components/PageError";
 import ProtectedContent from "./components/auth-content/ProtectedContent";
 import PageUser from "./components/auth-content/PageUser";
 import ForgotPassword from "./components/ForgotPassword";
+import ChangePassword from "./components/ChangePassword";
 
 function App() {
   // console.log(exp);
@@ -97,6 +98,10 @@ function App() {
         ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+        <Route
+          path="/reset-password/:id/:token"
+          element={<ChangePassword />}
+        ></Route>
         <Route
           path="/ubahRoleUser/:id"
           element={

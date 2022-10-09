@@ -119,13 +119,16 @@ const Users = () => {
                       <td>{user.role}</td>
                       <td>
                         <Link to={`/ubahRoleUser/${user._id}`}>
-                          <button className="badge btn-outline-light text-bg-success mx-2">
+                          <button
+                            type="button"
+                            className="btn btn-outline-success btn-sm mx-2"
+                          >
                             ubah
                           </button>
                         </Link>
                         <button
                           type="submit"
-                          className=" badge btn-outline-light text-bg-danger"
+                          className="btn btn-outline-danger btn-sm"
                           onClick={() => {
                             deleteUser(user._id);
                           }}

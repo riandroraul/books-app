@@ -27,14 +27,16 @@ const ForgotPassword = () => {
 
     const response = await fetch(
       "https://api-bukuku.herokuapp.com/req-reset-password",
+      // "http://localhost:5000/req-reset-password",
       requestOptions
     );
     const { message } = await response.json();
+    // console.log(response.json());
     if (response.status !== 200) {
       return Swal.fire({
         icon: "error",
         text: "your email not registered!",
-        title: "request failed!",
+        title: message,
       });
     }
     navigate("/login");

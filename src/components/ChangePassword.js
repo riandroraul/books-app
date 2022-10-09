@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const ForgotPassword = () => {
+const ChangePassword = () => {
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const navigate = useNavigate();
@@ -16,9 +16,15 @@ const ForgotPassword = () => {
         title: "Email is Required!",
       });
     }
+    if (password1.length < 5 || password2.length < 5) {
+      return Swal.fire({
+        icon: "error",
+        text: "password must be 5 characters or more",
+        title: "Email is Required!",
+      });
+    }
     const cekPassword = {
       password1,
-      password2,
     };
 
     const requestOptions = {
@@ -90,7 +96,7 @@ const ForgotPassword = () => {
                       type="submit"
                       className="form-control btn btn-primary my-2"
                     >
-                      Submit
+                      Change Password
                     </button>
                   </div>
                 </form>
@@ -103,4 +109,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ChangePassword;
