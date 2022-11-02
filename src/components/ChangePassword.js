@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ChangePassword = () => {
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const navigate = useNavigate();
+  const id = useParams();
+  const token = useParams();
 
   const changePassword = async (event) => {
     event.preventDefault();
@@ -13,14 +15,14 @@ const ChangePassword = () => {
       return Swal.fire({
         icon: "error",
         text: "field password must be fill",
-        title: "Email is Required!",
+        title: "field password is empty",
       });
     }
     if (password1.length < 5 || password2.length < 5) {
       return Swal.fire({
         icon: "error",
         text: "password must be 5 characters or more",
-        title: "Email is Required!",
+        title: "password must be strong",
       });
     }
     const cekPassword = {
@@ -34,7 +36,7 @@ const ChangePassword = () => {
     };
 
     const response = await fetch(
-      "https://api-bukuku.herokuapp.com/req-reset-password",
+      `http://localhost:5000/password-reset/${id}/${token}`,
       requestOptions
     );
     const { message } = await response.json();

@@ -16,7 +16,7 @@ const ForgotPassword = () => {
       });
     }
     const cekUser = {
-      email,
+      email: email,
     };
 
     const requestOptions = {
@@ -26,8 +26,8 @@ const ForgotPassword = () => {
     };
 
     const response = await fetch(
-      "https://api-bukuku.herokuapp.com/req-reset-password",
-      // "http://localhost:5000/req-reset-password",
+      // "https://api-bukuku.herokuapp.com/req-reset-password",
+      "http://localhost:5000/req-reset-password",
       requestOptions
     );
     const { message } = await response.json();
